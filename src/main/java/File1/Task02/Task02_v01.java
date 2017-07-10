@@ -1,23 +1,21 @@
 package File1.Task02;
 
-import java.util.stream.IntStream;
-
-public class Task02 {
+public class Task02_v01 {
 
     public static void main(String[] args) {
         programmFizzBuzz();
     }
 
     public static void programmFizzBuzz(){
-        StringBuilder string = new StringBuilder();
+        StringBuilder outputLine = new StringBuilder();
         for (int i = 1; i <= 100; i++) {
             for (Numbers number : Numbers.values()){
                 if (i % number.getNumber() == 0){
-                    string.append(number);
+                    outputLine.append(number.getOutputLine());
                 }
             }
-            System.out.println(string.toString().isEmpty() ? i : string);
-            string.delete(0, string.length());
+            System.out.println(outputLine.toString().isEmpty() ? i : outputLine);
+            outputLine.delete(0, outputLine.length());
         }
     }
 
@@ -31,6 +29,10 @@ public class Task02 {
         Numbers(int number, String outputLine) {
             this.number = number;
             this.outputLine = outputLine;
+        }
+
+        public String getOutputLine(){
+            return outputLine;
         }
 
         public int getNumber() {
@@ -50,3 +52,24 @@ public class Task02 {
  * да и избавило от коллекций\массивов.
  * Еще пытался сделать через Stream, но не получилось простого решения;
  * */
+
+
+
+
+/**
+ * Простое решение.
+ * */
+class Task02_v02 {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 100; i++) {
+            String outputString = "";
+            if (i % 3 == 0){
+                outputString += "Fizz";
+            }
+            if (i % 5 == 0){
+                outputString += "Buzz";
+            }
+            System.out.println(outputString.isEmpty() ? i : outputString);
+        }
+    }
+}
